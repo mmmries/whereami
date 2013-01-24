@@ -1,7 +1,6 @@
 class BNRMapPoint
   def initialize(coordinate, title)
-    @coordinate = coordinate
-    @title = title
+    @coordinate, @title = coordinate, title
   end
 
   def coordinate; @coordinate; end

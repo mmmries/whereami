@@ -1,6 +1,6 @@
 class WhereamiController < UIViewController
   extend IB
-  attr_reader :location_manager, :last_location, :points
+  attr_reader :location_manager, :last_location
 
   ## ib outlets
   outlet :worldView, MKMapView
@@ -11,7 +11,6 @@ class WhereamiController < UIViewController
     @location_manager = CLLocationManager.alloc.init
     location_manager.setDelegate(self)
     location_manager.setDesiredAccuracy(KCLLocationAccuracyBest)
-    @points = []
   end
 
   #MKMapViewDelegate
@@ -43,7 +42,6 @@ private
   def found_location(loc)
     coord = loc.coordinate
     point = BNRMapPoint.new(coord, locationTitleField.text)
-    points << point
     worldView.addAnnotation(point)
     location_manager.stopUpdatingLocation
     activityIndicator.stopAnimating
